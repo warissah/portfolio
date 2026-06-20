@@ -85,7 +85,7 @@
   margin: 0 auto 3rem;
   padding: 1.5rem 1.8rem;
   border: 2px solid rgba(255, 255, 255, 0.82);
-  background: rgba(255, 255, 255, 0.36);
+  background: rgba(255, 255, 255, 0.54);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   box-shadow:
@@ -140,9 +140,9 @@
   background:
     linear-gradient(
       135deg,
-      rgba(255, 246, 252, 0.44),
-      rgba(238, 232, 255, 0.34),
-      rgba(232, 250, 255, 0.25)
+      rgba(255, 246, 252, 0.641),
+      rgba(238, 232, 255, 0.568),
+      rgba(232, 250, 255, 0.583)
     ),
     repeating-linear-gradient(
       0deg,
@@ -230,7 +230,7 @@
   padding: 1rem 0.9rem;
   margin-bottom: 0.7rem;
   border: 1px solid rgba(255, 255, 255, 0.58);
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.431);
   cursor: pointer;
   color: #5141b8;
   text-align: left;
@@ -266,7 +266,7 @@
 .archive-item:hover,
 .archive-item.active {
   transform: translateX(6px);
-  background: rgba(255, 255, 255, 0.44);
+  background: rgba(255, 255, 255, 0.701);
   border-color: rgba(255, 255, 255, 0.96);
 }
 
