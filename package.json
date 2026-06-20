@@ -2,10 +2,10 @@
   "name": "portfolio",
   "private": true,
   "scripts": {
-    "dev": "npm run dev --prefix my-portfolio",
-    "build": "npm run build --prefix my-portfolio",
-    "preview": "npm run preview --prefix my-portfolio",
-    "lint": "npm run lint --prefix my-portfolio"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint ."
   },
   "dependencies": {
     "framer-motion": "^12.38.0",
