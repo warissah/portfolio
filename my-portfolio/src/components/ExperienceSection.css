@@ -1,0 +1,438 @@
+.experience-section {
+  min-height: 100vh;
+  position: relative;
+  padding: 8rem 8vw;
+  overflow: hidden;
+  background: transparent;
+}
+
+.experience-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 25%, rgba(255, 220, 244, 0.34), transparent 30%),
+    radial-gradient(circle at 80% 72%, rgba(214, 196, 255, 0.34), transparent 32%),
+    radial-gradient(circle at 50% 50%, rgba(232, 250, 255, 0.22), transparent 36%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.06) 0,
+      rgba(255, 255, 255, 0.06) 1px,
+      transparent 1px,
+      transparent 10px
+    );
+  pointer-events: none;
+  animation: experienceGlowDrift 8s ease-in-out infinite alternate;
+}
+
+.experience-header {
+  position: relative;
+  z-index: 5;
+  width: min(100%, 1180px);
+  margin: 0 auto 3rem;
+  padding: 1.4rem 1.7rem;
+  border: 2px solid rgba(255, 255, 255, 0.86);
+  background: rgba(255, 255, 255, 0.36);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.22),
+    0 0 26px rgba(255, 255, 255, 0.34),
+    inset 0 0 18px rgba(255, 255, 255, 0.2);
+}
+
+.experience-header p,
+.experience-header span {
+  font-family: "Silkscreen", monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: #6f61d7;
+}
+
+.experience-header h2 {
+  margin: 0.4rem 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(3rem, 6vw, 5.4rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+  color: #5141b8;
+  text-shadow:
+    2px 2px 0 white,
+    0 0 18px rgba(255, 255, 255, 0.72),
+    0 0 30px rgba(214, 196, 255, 0.35);
+}
+
+.carousel-shell {
+  position: relative;
+  z-index: 4;
+  width: min(100%, 1180px);
+  height: 520px;
+  margin: 0 auto;
+  perspective: 1400px;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.experience-carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform: translateZ(0);
+}
+
+.experience-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: min(660px, 82vw);
+  min-height: 410px;
+  padding: 1.6rem;
+
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.88);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.62),
+      rgba(238, 232, 255, 0.38),
+      rgba(232, 250, 255, 0.22)
+    );
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.22),
+    0 0 20px rgba(255, 255, 255, 0.4),
+    0 0 36px rgba(214, 196, 255, 0.22),
+    inset 0 0 16px rgba(255, 255, 255, 0.2);
+
+  cursor: none;
+
+  transition:
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.35s ease;
+
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+.experience-card::before,
+.experience-card::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  filter: drop-shadow(0 0 7px white);
+}
+
+.experience-card::before {
+  top: 12px;
+  left: 12px;
+  border-top: 2px solid white;
+  border-left: 2px solid white;
+}
+
+.experience-card::after {
+  right: 12px;
+  bottom: 12px;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+}
+
+.experience-card.active {
+  opacity: 1;
+  z-index: 5;
+  filter: none;
+  transform:
+    translate(-50%, -50%)
+    rotateY(0deg)
+    scale(1);
+}
+
+.experience-card.prev {
+  opacity: 0.42;
+  z-index: 3;
+  filter: none;
+  transform:
+    translate(-112%, -50%)
+    rotateY(24deg)
+    rotateZ(-2deg)
+    scale(0.84);
+}
+
+.experience-card.next {
+  opacity: 0.42;
+  z-index: 3;
+  filter: none;
+  transform:
+    translate(12%, -50%)
+    rotateY(-24deg)
+    rotateZ(2deg)
+    scale(0.84);
+}
+
+.experience-card.hidden {
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+  transform:
+    translate(-50%, -50%)
+    rotateY(60deg)
+    scale(0.7);
+}
+
+.experience-card.prev::before,
+.experience-card.prev::after,
+.experience-card.next::before,
+.experience-card.next::after,
+.experience-card.hidden::before,
+.experience-card.hidden::after {
+  opacity: 0;
+}
+
+.experience-scanline {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.experience-card.prev .experience-scanline,
+.experience-card.next .experience-scanline,
+.experience-card.hidden .experience-scanline {
+  display: none;
+}
+
+.experience-card.active .experience-scanline::before {
+  content: "";
+  position: absolute;
+  left: -20%;
+  top: -10%;
+  width: 140%;
+  height: 2px;
+  background: white;
+  box-shadow:
+    0 0 8px white,
+    0 0 18px rgba(214, 196, 255, 0.75);
+  animation: experienceScan 4s linear infinite;
+}
+
+.experience-card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: "Silkscreen", monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: rgba(81, 65, 184, 0.78);
+}
+
+.experience-card h3 {
+  margin: 1.2rem 0 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(2.2rem, 4.6vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.055em;
+  color: #5141b8;
+  text-shadow:
+    2px 2px 0 white,
+    0 0 18px rgba(255, 255, 255, 0.65);
+}
+
+.experience-card h4 {
+  margin: 0.8rem 0 0;
+  font-family: "Inter", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: rgba(72, 58, 96, 0.88);
+}
+
+.experience-card p {
+  margin-top: 1.3rem;
+  color: rgba(72, 58, 96, 0.92);
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.experience-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.4rem;
+}
+
+.experience-skills span {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #5141b8;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.42);
+  box-shadow:
+    0 0 12px rgba(255, 255, 255, 0.38),
+    inset 0 0 10px rgba(255, 255, 255, 0.18);
+}
+
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  z-index: 8;
+  width: 48px;
+  height: 48px;
+  transform: translateY(-50%);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.36);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #5141b8;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: none;
+  box-shadow:
+    0 0 14px rgba(255, 255, 255, 0.62),
+    0 0 26px rgba(214, 196, 255, 0.36);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.carousel-control:hover {
+  background: rgba(255, 255, 255, 0.56);
+  transform: translateY(-50%) scale(1.08);
+  box-shadow:
+    0 0 18px white,
+    0 0 34px rgba(214, 196, 255, 0.7);
+}
+
+.carousel-control.left {
+  left: 0;
+}
+
+.carousel-control.right {
+  right: 0;
+}
+
+.experience-dots {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.experience-dots button {
+  position: relative;
+  border: 0;
+  background: transparent;
+  cursor: none;
+}
+
+.experience-dots span {
+  display: block;
+  width: 15px;
+  height: 15px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow:
+    0 0 8px white,
+    0 0 16px rgba(214, 196, 255, 0.65);
+  transform: rotate(45deg);
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.experience-dots small {
+  display: block;
+  margin-top: 0.7rem;
+  font-family: "Silkscreen", monospace;
+  font-size: 8px;
+  color: rgba(81, 65, 184, 0.75);
+}
+
+.experience-dots button.active span {
+  background: white;
+  transform: rotate(45deg) scale(1.35);
+  box-shadow:
+    0 0 12px white,
+    0 0 26px rgba(214, 196, 255, 0.9),
+    0 0 38px rgba(255, 210, 244, 0.55);
+}
+
+@keyframes experienceGlowDrift {
+  from {
+    transform: translateY(0);
+    opacity: 0.82;
+  }
+
+  to {
+    transform: translateY(-20px);
+    opacity: 1;
+  }
+}
+
+@keyframes experienceScan {
+  from {
+    top: -10%;
+  }
+
+  to {
+    top: 115%;
+  }
+}
+
+@media (max-width: 850px) {
+  .experience-section {
+    padding: 6rem 1.2rem;
+  }
+
+  .carousel-shell {
+    height: 600px;
+  }
+
+  .experience-card {
+    width: min(620px, 86vw);
+    min-height: 440px;
+  }
+
+  .experience-card.prev {
+    transform:
+      translate(-95%, -50%)
+      rotateY(24deg)
+      scale(0.76);
+  }
+
+  .experience-card.next {
+    transform:
+      translate(-5%, -50%)
+      rotateY(-24deg)
+      scale(0.76);
+  }
+
+  .carousel-control {
+    top: auto;
+    bottom: -1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .experience-header {
+    padding: 1.2rem;
+  }
+
+  .experience-card {
+    width: 88vw;
+    padding: 1.25rem;
+  }
+
+  .experience-card.prev,
+  .experience-card.next {
+    opacity: 0;
+    pointer-events: none;
+  }
+}

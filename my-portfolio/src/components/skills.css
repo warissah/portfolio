@@ -1,0 +1,238 @@
+.skills-section {
+  position: relative;
+  min-height: 100vh;
+  padding: 8rem 8vw;
+  overflow: hidden;
+  background: transparent;
+}
+
+.skills-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 24%, rgba(255, 220, 244, 0.25), transparent 32%),
+    radial-gradient(circle at 82% 68%, rgba(205, 194, 255, 0.24), transparent 34%),
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: auto, auto, 16px 16px, 16px 16px;
+  pointer-events: none;
+}
+
+.skills-section::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -6%;
+  width: 100%;
+  height: 3px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.95) 0,
+      rgba(255, 255, 255, 0.95) 18px,
+      transparent 18px,
+      transparent 28px
+    );
+  opacity: 0.16;
+  animation: scannerMove 8s linear infinite;
+  pointer-events: none;
+}
+
+.skills-header {
+  position: relative;
+  z-index: 3;
+  width: min(100%, 1050px);
+  margin: 0 auto 4rem;
+}
+
+.skills-header p,
+.skills-header span {
+  font-family: "Silkscreen", monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: rgba(81, 65, 184, 0.72);
+}
+
+.skills-header h2 {
+  margin: 0.45rem 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(3.2rem, 6vw, 5.4rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+  color: #5141b8;
+  text-shadow:
+    2px 2px 0 white,
+    4px 4px 0 rgba(190, 177, 255, 0.24);
+}
+
+.skills-field {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 1080px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.45rem;
+}
+
+.skill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.skill-row:nth-child(odd) {
+  justify-content: flex-start;
+}
+
+.skill-row:nth-child(even) {
+  justify-content: flex-end;
+}
+
+.skill-chip {
+  position: relative;
+  overflow: hidden;
+  padding: 0.95rem 1.45rem;
+  border: 2px solid rgba(255, 255, 255, 0.82);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.42),
+      rgba(255, 255, 255, 0.22)
+    );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow:
+    4px 4px 0 rgba(178, 163, 238, 0.18),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(1rem, 1.6vw, 1.3rem);
+  font-weight: 750;
+  color: rgba(81, 65, 184, 0.92);
+  animation:
+    pixelAppear 0.45s steps(5, end) both,
+    floatUp 5.5s ease-in-out infinite;
+  animation-delay:
+    calc(var(--i) * 0.035s),
+    calc(var(--i) * -0.16s);
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.skill-chip:nth-child(even) {
+  animation-name: pixelAppear, floatDown;
+  animation-duration: 0.45s, 6.2s;
+}
+
+.skill-chip::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(white, white) top left / 12px 2px no-repeat,
+    linear-gradient(white, white) top left / 2px 12px no-repeat,
+    linear-gradient(white, white) top right / 12px 2px no-repeat,
+    linear-gradient(white, white) top right / 2px 12px no-repeat,
+    linear-gradient(white, white) bottom left / 12px 2px no-repeat,
+    linear-gradient(white, white) bottom left / 2px 12px no-repeat,
+    linear-gradient(white, white) bottom right / 12px 2px no-repeat,
+    linear-gradient(white, white) bottom right / 2px 12px no-repeat;
+  opacity: 0.86;
+}
+
+.skill-chip::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  pointer-events: none;
+}
+
+.skill-chip:hover {
+  transform: translateY(-6px);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.6),
+      rgba(250, 247, 255, 0.32)
+    );
+  box-shadow:
+    8px 8px 0 rgba(178, 163, 238, 0.22),
+    0 0 20px rgba(255, 255, 255, 0.5),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.24);
+}
+
+@keyframes scannerMove {
+  from {
+    top: -6%;
+  }
+
+  to {
+    top: 106%;
+  }
+}
+
+@keyframes floatUp {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -7px;
+  }
+}
+
+@keyframes floatDown {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 6px;
+  }
+}
+
+@keyframes pixelAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(2px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .skills-section {
+    padding: 6rem 1.25rem;
+  }
+
+  .skills-header {
+    margin-bottom: 3rem;
+  }
+
+  .skills-field {
+    gap: 1rem;
+  }
+
+  .skill-row,
+  .skill-row:nth-child(even),
+  .skill-row:nth-child(odd) {
+    justify-content: flex-start;
+  }
+
+  .skill-chip {
+    padding: 0.75rem 1rem;
+  }
+}
