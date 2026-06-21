@@ -1,11 +1,54 @@
+import { useState } from "react";
 import "./HeroSection.css";
 
 export default function HeroSection() {
+  const [orbOffset, setOrbOffset] = useState({ x: 0, y: 0 });
+
+  const handleOrbRepel = (e) => {
+    const orb = e.currentTarget;
+    const rect = orb.getBoundingClientRect();
+
+    const orbX = rect.left + rect.width / 2;
+    const orbY = rect.top + rect.height / 2;
+
+    const dx = orbX - e.clientX;
+    const dy = orbY - e.clientY;
+
+    const distance = Math.sqrt(dx * dx + dy * dy) || 1;
+    const strength = Math.max(0, 1 - distance / 135);
+
+    setOrbOffset({
+      x: (dx / distance) * strength * 42,
+      y: (dy / distance) * strength * 42,
+    });
+  };
+
+  const resetOrb = () => {
+    setOrbOffset({ x: 0, y: 0 });
+  };
+
   return (
     <section id="home" className="hero-section">
       <img src="/images/hero-bg.png" alt="" className="hero-bg" />
 
       <div className="pastel-overlay" />
+
+      <div
+        className="cute-orb"
+        onMouseMove={handleOrbRepel}
+        onMouseLeave={resetOrb}
+        style={{
+          "--repel-x": `${orbOffset.x}px`,
+          "--repel-y": `${orbOffset.y}px`,
+        }}
+      >
+        <div className="orb-ring" />
+
+        <div className="orb-face">
+          <span />
+          <span />
+        </div>
+      </div>
 
       <div className="hero-pixels">
         <span />

@@ -11,33 +11,41 @@ export default function AboutSection() {
   const boxHeight = 210
 
   const moveReveal = (e) => {
-    const container = e.currentTarget
-    const rect = container.getBoundingClientRect()
+  const container = e.currentTarget;
+  const rect = container.getBoundingClientRect();
 
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
-    const halfW = boxWidth / 2
-    const halfH = boxHeight / 2
+  const x = clientX - rect.left;
+  const y = clientY - rect.top;
 
-    const clampedX = Math.max(halfW, Math.min(rect.width - halfW, x))
-    const clampedY = Math.max(halfH, Math.min(rect.height - halfH, y))
+  const halfW = boxWidth / 2;
+  const halfH = boxHeight / 2;
 
-    revealRef.current.style.clipPath = `inset(
-      ${clampedY - halfH}px
-      ${rect.width - clampedX - halfW}px
-      ${rect.height - clampedY - halfH}px
-      ${clampedX - halfW}px
-      round 16px
-    )`
+  const clampedX = Math.max(halfW, Math.min(rect.width - halfW, x));
+  const clampedY = Math.max(halfH, Math.min(rect.height - halfH, y));
 
-    boxRef.current.style.left = `${clampedX}px`
-    boxRef.current.style.top = `${clampedY}px`
-  }
+  revealRef.current.style.clipPath = `inset(
+    ${clampedY - halfH}px
+    ${rect.width - clampedX - halfW}px
+    ${rect.height - clampedY - halfH}px
+    ${clampedX - halfW}px
+    round 16px
+  )`;
+
+  boxRef.current.style.left = `${clampedX}px`;
+  boxRef.current.style.top = `${clampedY}px`;
+};
 
   return (
     <section id="about" className="about-section">
-      <div className="about-image-wrap" onMouseMove={moveReveal}>
+      <div
+  className="about-image-wrap"
+  onMouseMove={moveReveal}
+  onTouchStart={moveReveal}
+  onTouchMove={moveReveal}
+>
         <img className="about-image base" src="/images/about-1.png" alt="" />
 
         <img

@@ -710,3 +710,6 @@
     transform: translateY(50px);
   }
 }
+.about-image-wrap {
+  touch-action: none;
+}
